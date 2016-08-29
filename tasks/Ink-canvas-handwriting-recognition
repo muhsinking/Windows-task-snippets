@@ -14,7 +14,15 @@ Creates an Ink Canvas and a button, which can be pressed to recognize handwritte
 ```
 
 ## C# #
+
 ```CSharp
+public MainPage()
+{
+  this.InitializeComponent();
+  inkRecognizerContainer = new InkRecognizerContainer();
+  ink.InkPresenter.InputDeviceTypes = Windows.UI.Core.CoreInputDeviceTypes.Mouse | Windows.UI.Core.CoreInputDeviceTypes.Touch | Windows.UI.Core.CoreInputDeviceTypes.Pen;
+}
+
 async void RecognizeText(object sender RoutedEventArgs e){
   var result = await inkRecognizerContainer.RecognizeAsync(ink.InkPresenter.StrokeContainer, InkRecognitionTarget.All);
   string s = result[0].GetTextCandidates()[0];
